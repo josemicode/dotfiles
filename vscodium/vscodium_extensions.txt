@@ -1,0 +1,9 @@
+aaron-bond.better-comments
+batisteo.vscode-django
+gruntfuggly.bettercomment
+ms-azuretools.vscode-docker
+ms-python.debugpy
+ms-python.python
+murloccra4ler.bettersearch
+mvllow.rose-pine
+pkief.material-icon-theme

@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block title %}Recommended{% endblock %}
+
+{% block content %}
+<h1>List of Recommended Questions</h1>
+
+<ul>
+    {% for question in questions %}
+    <li> {{ question.title }} : {{ question.description }} </li>
+    {% endfor %}
+</ul>
+
+{% endblock %}
