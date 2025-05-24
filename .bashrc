@@ -14,3 +14,5 @@ export PATH=$PATH:/usr/bin
 # Golang env
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
+
+source ~/.api_keys
