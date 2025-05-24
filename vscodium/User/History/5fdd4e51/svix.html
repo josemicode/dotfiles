@@ -1,0 +1,174 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}CuOOra{% endblock %}</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <style>
+        /* Animación suave para elementos interactivos */
+        .transition-custom {
+            transition: all 0.3s ease-in-out;
+        }
+    </style>
+    
+</head>
+<body class="w-full flex flex-col bg-white text-gray-900 font-sans">
+    <form style="display:none;">
+        {% csrf_token %}
+      </form>
+
+
+    <!-- Header -->
+    <header class="w-full shadow-md sticky top-0 z-50 bg-white">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <!-- Logo -->
+            <a href="/home/" class="text-3xl font-semibold tracking-tight text-gray-900 hover:text-gray-700 hover:scale-105 transition-transform duration-200 -ml-14">
+                CuOOra
+            </a>
+    
+            <nav class="flex items-center gap-4 -mr-16">
+                {% if active_tab == 'responder' %}
+                  <select id="navSelect"
+                          onchange="location = this.value"
+                          class="border border-gray-300 rounded-lg px-3 py-2 text-sm text-gray-700 bg-white shadow-sm focus:outline-none focus:ring-2 focus:ring-gray-800">
+                    <!-- Placeholder que apunta a esta misma página -->
+                    <option 
+                      value="{% url 'responder_pregunta' pk=question.pk %}" 
+                      selected
+                    >--------</option>
+              
+                    <!-- Resto de opciones -->
+                    <option value="/home/">Home</option>
+                    <option value="/users/list/">Users</option>
+                    <option value="/topics/">Topics</option>
+                    <option value="/questions/">Preguntas</option>
+                    <option value="/answers/">Respuestas</option>
+                  </select>
+                {% else %}
+                  <select id="navSelect"
+                          onchange="location = this.value"
+                          class="border border-gray-300 rounded-lg px-3 py-2 text-sm text-gray-700 bg-white shadow-sm focus:outline-none focus:ring-2 focus:ring-gray-800">
+                    <option value="/home/"        {% if active_tab == 'home'      %}selected{% endif %}>Home</option>
+                    <option value="/users/list/"  {% if active_tab == 'users'     %}selected{% endif %}>Users</option>
+                    <option value="/topics/"      {% if active_tab == 'topics'    %}selected{% endif %}>Topics</option>
+                    <option value="/questions/"   {% if active_tab == 'questions' %}selected{% endif %}>Preguntas</option>
+                    <option value="/answers/"     {% if active_tab == 'answers'   %}selected{% endif %}>Respuestas</option>
+                  </select>
+                {% endif %}
+              
+                <!-- resto del menú -->
+                <a href="/topics/"   class="text-sm font-medium text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-100">Topics</a>
+                <a href="/questions/"class="text-sm font-medium text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-100">Preguntas</a>
+                <a href="{% url 'crear_pregunta' %}" class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded transition">Crear pregunta</a>
+                <a href="{% url 'notifications_view' %}" class="text-sm font-medium text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-100">🔔</a>
+                {% if user.is_authenticated %}
+                
+                <!-- Menú de usuario -->
+                <div class="relative">
+                    <button id="userMenuBtn" class="ml-2 text-sm font-semibold text-gray-600 hover:text-blue-500 transition-custom -mr-4">
+                        {{ user.username }}
+                    </button>
+                
+                    <div id="userMenu" class="absolute right-0 mt-2 w-48 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-lg shadow-lg hidden">
+                        <div class="px-4 py-2 text-sm text-gray-700 dark:text-gray-200">
+                            <p><strong>{{ user.username }}</strong></p>
+                            <p>{{ user.email }}</p>
+                        </div>
+                        <div class="border-t border-gray-300 dark:border-gray-600">
+                            <form method="post" action="{% url 'logout' %}" class="px-4 py-2">
+                                {% csrf_token %}
+                                <button type="submit" class="w-full text-left text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">
+                                    Cerrar sesión
+                                </button>
+                            </form>
+                        </div>                        
+                    </div>
+                </div>
+                {% else %}
+
+                <!-- Botón de login -->
+                <a href="{% url 'login' %}" class="text-sm font-medium text-gray-700 px-4 py-2 rounded-lg border border-gray-300 hover:bg-gray-100 transition-custom">
+                    Iniciar sesión
+                </a>
+                {% endif %}
+            </nav>
+        </div>
+    </header>
+    
+    <script>
+        const userMenuBtn = document.getElementById('userMenuBtn');
+        const userMenu = document.getElementById('userMenu');
+    
+        userMenuBtn.addEventListener('click', function() {
+            
+            userMenu.classList.toggle('hidden');
+        });
+    
+        
+        window.addEventListener('click', function(event) {
+            if (!userMenuBtn.contains(event.target) && !userMenu.contains(event.target)) {
+                userMenu.classList.add('hidden');
+            }
+        });
+    </script>
+    
+
+    <!-- Contenido -->
+    {% block main %}
+        <main class="flex-grow max-w-5xl mx-auto px-6 py-8 bg-white dark:bg-gray-800 rounded-xl shadow-md animate-fade-in">
+            {% block content %}{% endblock %}
+        </main>
+    {% endblock %}  
+    
+    <style>
+    @keyframes fade-in {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    .animate-fade-in {
+        animation: fade-in 0.5s ease-out;
+    }
+    </style>
+
+    <!-- Script del select dinámico -->
+    <script>
+        const navSelect = document.getElementById('navSelect');
+        const currentPath = window.location.pathname;
+
+        for (let i = 0; i < navSelect.options.length; i++) {
+            if (navSelect.options[i].value === currentPath) {
+                navSelect.selectedIndex = i;
+                break;
+            }
+        }
+
+        navSelect.addEventListener('change', function () {
+            const selectedValue = this.value;
+            if (selectedValue) {
+                window.location.href = selectedValue;
+            }
+        });
+    </script>
+
+    <footer class="w-full border-t border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 mt-32 mb-0">
+        <div class="max-w-7xl mx-auto px-6 py-10 flex flex-col md:flex-row justify-between items-center text-sm text-gray-500 dark:text-gray-400">
+            <div class="mb-4 md:mb-0">
+                &copy; 2025 Jose Maria & Jose Miguel. Todos los derechos reservados.
+            </div>
+    
+            <div class="flex gap-6">
+                <a href="/about/" class="hover:text-gray-900 dark:hover:text-white transition">Sobre nosotros</a>
+                <a href="/contact/" class="hover:text-gray-900 dark:hover:text-white transition">Contacto</a>
+                <a href="https://github.com/josemicode/cuOOra" target="_blank" class="hover:text-gray-900 dark:hover:text-white transition">GitHub</a>
+            </div>
+        </div>
+    </footer>
+    <script src="{% static 'js/questions.js' %}"></script>
+    {% block extra_scripts %}{% endblock %}
+
+</body>
+</html>

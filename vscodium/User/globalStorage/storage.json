@@ -55,8 +55,8 @@
                 "mode": 0,
                 "x": 0,
                 "y": 0,
-                "width": 1200,
-                "height": 675
+                "width": 600,
+                "height": 640
             }
         },
         "openedWindows": []
@@ -64,7 +64,7 @@
     "windowSplashWorkspaceOverride": {
         "layoutInfo": {
             "auxiliarySideBarWidth": [
-                170,
+                378,
                 []
             ]
         }

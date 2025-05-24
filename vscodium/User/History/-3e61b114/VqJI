@@ -1,0 +1,18 @@
+#development|staging|production
+ENVIRONMENT=development
+
+#LOCAL DATABASE
+DB_HOST=db
+POSTGRES_DB=dbapp
+POSTGRES_USER=postgres_user
+POSTGRES_PASSWORD=super_secret_password
+
+CELERY_BROKER_URL=redis://redis:6379/0
+CELERY_BACKEND=redis://redis:6379/0
+
+DEBUG=True
+
+# API conn
+ANALYZER_BASE=http://host.docker.internal:8001
+ANALYZER_USER=admin
+ANALYZER_PASS=admin
