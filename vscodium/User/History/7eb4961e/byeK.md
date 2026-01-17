@@ -1,7 +1,0 @@
-Create simple view for notifications [x]
-Search bar (coincidences) [x]
-Show only verified answers [x]
-Notifications template [x]
-Adapt analyzer for question [x]
-Notify answered user []
-Notify voted []

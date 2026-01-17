@@ -16,3 +16,6 @@ export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
 
 source ~/.api_keys
+
+# npm global rewritten path
+export PATH="$HOME/.npm-global/bin:$PATH"

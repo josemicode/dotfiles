@@ -13,5 +13,6 @@
     "git.autofetch": true,
     "workbench.sideBar.location": "right",
     "editor.minimap.enabled": false,
-    "chat.commandCenter.enabled": false
+    "chat.commandCenter.enabled": false,
+    "editor.linkedEditing": true
 }

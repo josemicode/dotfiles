@@ -1,1 +1,0 @@
-Create simple view for notifications
