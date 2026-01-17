@@ -1,0 +1,111 @@
+// Zed settings
+//
+// For information on how to configure Zed, see the Zed
+// documentation: https://zed.dev/docs/configuring-zed
+//
+// To see all of Zed's default settings without changing your
+// custom settings, run `zed: open default settings` from the
+// command palette (cmd-shift-p / ctrl-shift-p)
+{
+    "features": {
+        "edit_prediction_provider": "zed",
+    },
+    "cursor_blink": false,
+    "relative_line_numbers": "enabled",
+    "show_edit_predictions": false,
+    "edit_predictions": {
+        "mode": "eager",
+    },
+    "colorize_brackets": true,
+    "inline_code_actions": false,
+    "gutter": {
+        "folds": true,
+    },
+    "toolbar": {
+        "quick_actions": true,
+        "code_actions": false,
+    },
+    "git": {
+        "inline_blame": {
+            "enabled": false,
+            "show_commit_summary": false,
+            "delay_ms": 500,
+        },
+    },
+    "centered_layout": {
+        "left_padding": 0.2,
+    },
+    "bottom_dock_layout": "contained",
+    "tabs": {
+        "file_icons": false,
+        "git_status": true,
+    },
+    "tab_bar": {
+        "show": false,
+    },
+    "title_bar": {
+        "show_menus": false,
+        "show_project_items": true,
+        "show_branch_name": true,
+        "show_branch_icon": true,
+    },
+    "status_bar": {
+        "active_language_button": true,
+    },
+    "hard_tabs": false,
+    "tab_size": 4,
+    "buffer_font_weight": 400.0,
+    "buffer_font_family": "Monocraft",
+    "buffer_font_features": {
+        "calt": true,
+        "liga": true,
+    },
+    "redact_private_values": true,
+    "helix_mode": false,
+    "agent": {
+        "profiles": {
+            "sample": {
+                "name": "Sample",
+                "tools": {},
+                "enable_all_context_servers": false,
+                "context_servers": {}
+            }
+        },
+        "default_model": {
+            "provider": "copilot_chat",
+            "model": "gpt-5-mini"
+        },
+        "dock": "left",
+        "model_parameters": [],
+    },
+    "notification_panel": {
+        "dock": "left",
+    },
+    "outline_panel": {
+        "dock": "right",
+    },
+    "git_panel": {
+        "dock": "right",
+    },
+    "project_panel": {
+        "button": true,
+        "dock": "right",
+    },
+    "terminal": {
+        "dock": "bottom",
+    },
+    "vim_mode": true,
+    "base_keymap": "VSCode",
+    "icon_theme": {
+        "mode": "dark",
+        "light": "Zed (Default)",
+        "dark": "Colored Zed Icons Theme Dark",
+    },
+    "ui_font_size": 16,
+    "buffer_font_size": 16.0,
+    "theme": {
+        "mode": "dark",
+        "light": "Gruvbox Light",
+        "dark": "Mangoes",
+    },
+}

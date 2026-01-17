@@ -1,0 +1,62 @@
+// Zed keymap
+//
+// For information on binding keys, see the Zed
+// documentation: https://zed.dev/docs/key-bindings
+//
+// To see the default key bindings run `zed: open default keymap`
+// from the command palette.
+[
+    {
+        "context": "Workspace",
+        "bindings": {
+            // "shift shift": "file_finder::Toggle"
+        },
+    },
+    {
+        "context": "Editor && vim_mode == insert",
+        "bindings": {
+            // "j k": "vim::NormalBefore"
+        },
+    },
+    {
+        "context": "Workspace",
+        "bindings": {
+            "ctrl-shift-t": "terminal_panel::Toggle",
+        },
+    },
+    {
+        "context": "Workspace",
+        "bindings": {
+            "ctrl-alt-b": "workspace::ToggleLeftDock",
+        },
+    },
+    {
+        "context": "Workspace",
+        "bindings": {
+            "ctrl-b ctrl-b": "workspace::ToggleRightDock",
+        },
+    },
+    {
+        "context": "Workspace",
+        "bindings": {
+            "ctrl-j ctrl-j": "workspace::ToggleBottomDock",
+        },
+    },
+    {
+        "bindings": {
+            "ctrl-alt-p": [
+                "task::Spawn",
+                {
+                    "task_name": "Television",
+                    "reveal_target": "center"
+                }
+            ],
+        },
+    },
+    {
+        "context": "Workspace",
+        "bindings": {
+            "ctrl-p": "file_finder::Toggle"
+        }
+    }
+]
